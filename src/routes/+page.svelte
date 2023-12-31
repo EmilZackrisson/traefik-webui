@@ -5,15 +5,27 @@
 
 </script>
 
-<h1>Traefik WebUI</h1>
+<h1 class="text-3xl font-semibold">Traefik WebUI</h1>
 <p>Edit the Traefik configuration from your browser.</p>
 
-<h2>Routers</h2>
-{#each data.routers as router}
-    <p>{router}</p>
-{/each}
+<section class="flex flex-col my-5">
+    <h2 class="text-xl font-semibold">Routers</h2>
+    {#each data.routers as router}
+        <a href="/routers/{router}">{router}</a>
+    {/each}
+</section>
 
-<h2>Services</h2>
+<section class="flex flex-col my-5">
+    <h2 class="text-xl font-semibold">Services</h2>
 {#each data.services as service}
     <p>{service}</p>
 {/each}
+</section>
+
+
+<section class="flex flex-col my-5">
+    <h2 class="text-xl font-semibold">EntryPoints</h2>
+{#each data.entrypoints as entrypoint}
+    <p>{entrypoint}</p>
+{/each}
+</section>

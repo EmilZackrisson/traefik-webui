@@ -30,6 +30,12 @@ export async function GetMiddlewares() {
 	return middlewares;
 }
 
+export async function GetEntryPoints() {
+	const res = await fetch(TRAEFIK_API_ENDPOINT + '/api/entrypoints');
+	const entrypoints = (await res.json()) as string[];
+	return entrypoints;
+}
+
 export async function CreateRouter(routerName: string, router: Router) {
 	return fetch(TRAEFIK_API_ENDPOINT + '/api/router?routerName=' + routerName, {
 		method: 'POST',
