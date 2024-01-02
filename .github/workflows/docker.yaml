@@ -47,6 +47,8 @@ jobs:
             ghcr.io/emilzackrisson/traefik-webui:latest
           # build on feature branches, push only on main branch
           push: ${{ github.ref == 'refs/heads/main' }}
+          secrets: |
+            TRAEFIK_API_ENDPOINT=http://traefik-api:8080
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
