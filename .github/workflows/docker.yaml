@@ -8,6 +8,9 @@ on:
       - '.github/**'
   workflow_dispatch: # run it manually
 
+env:
+    TRAEFIK_API_ENDPOINT: http://traefik-api:8080
+
 jobs:
   # define job to build and publish docker image
 
