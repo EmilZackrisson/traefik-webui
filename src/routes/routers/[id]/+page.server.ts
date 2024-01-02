@@ -1,5 +1,11 @@
 import type { Actions, PageServerLoad } from './$types';
-import { GetRouter, GetMiddlewares, GetServices, GetEntryPoints } from '$lib/traefikApi';
+import {
+	GetRouter,
+	GetMiddlewares,
+	GetServices,
+	GetEntryPoints,
+	UpdateRouter
+} from '$lib/traefikApi';
 import { error } from '@sveltejs/kit';
 import { saveUnsavedChangesToCookie } from '$lib/saveToCookie';
 
@@ -50,7 +56,8 @@ export const actions = {
 		}
 
 		saveUnsavedChangesToCookie(cookies, params);
-
+		const updatedRouter = await UpdateRouter(params.id, newObj);
+		console.log(updatedRouter);
 		console.log(jsonData);
 		console.log(newObj);
 		return { success: true };

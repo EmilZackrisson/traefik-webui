@@ -46,9 +46,29 @@ export async function CreateRouter(routerName: string, router: Router) {
 	});
 }
 
+export async function UpdateRouter(routerName: string, router: Router) {
+	return fetch(TRAEFIK_API_ENDPOINT + '/api/router?routerName=' + routerName, {
+		method: 'PUT',
+		body: JSON.stringify(router),
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	});
+}
+
 export async function CreateService(serviceName: string, service: Service) {
 	return fetch(TRAEFIK_API_ENDPOINT + '/api/service?serviceName=' + serviceName, {
 		method: 'POST',
+		body: JSON.stringify(service),
+		headers: {
+			'Content-Type': 'application/json'
+		}
+	});
+}
+
+export async function UpdateService(serviceName: string, service: Service) {
+	return fetch(TRAEFIK_API_ENDPOINT + '/api/service?serviceName=' + serviceName, {
+		method: 'PUT',
 		body: JSON.stringify(service),
 		headers: {
 			'Content-Type': 'application/json'
@@ -63,5 +83,17 @@ export async function Save() {
 
 	if (res.status != 204) {
 		throw new Error('Failed to save.');
+	}
+}
+
+export async function AbortChanges() {
+	const res = await fetch(TRAEFIK_API_ENDPOINT + '/api/abort-changes', {
+		method: 'POST'
+	});
+
+	console.log(res.status);
+
+	if (res.status != 204) {
+		throw new Error('Failed to abort changes.');
 	}
 }

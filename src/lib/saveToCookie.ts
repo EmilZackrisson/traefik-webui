@@ -19,6 +19,15 @@ export function saveUnsavedChangesToCookie(cookies: Cookies, params: { id: strin
 	}
 }
 
+export function getUnsavedChangesFromCookie(cookies: Cookies) {
+	const unsavedObjects = cookies.get('traefik-objects-unsaved');
+	if (unsavedObjects) {
+		return JSON.parse(unsavedObjects) as string[];
+	} else {
+		return [];
+	}
+}
+
 export function removeUnsavedChangesFromCookie(cookies: Cookies) {
 	const unsavedObjects = cookies.get('traefik-objects-unsaved');
 	if (unsavedObjects) {

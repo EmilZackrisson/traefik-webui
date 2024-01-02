@@ -1,12 +1,17 @@
 <script lang="ts">
     import type { ActionData, PageData } from './$types';
     import { enhance } from '$app/forms';
+    import { getContext, setContext } from 'svelte';
+	import type { Writable } from 'svelte/store';
 
     export let data: PageData;
 
 	export let form: ActionData;
 
-    console.log(data);
+    if (form?.success) {
+        
+    }
+
 </script>
 
 <h1>{data.id}</h1>
@@ -30,14 +35,17 @@
     <label for="EntryPoints">EntryPoints</label>
     <select name="EntryPoints" id="EntryPoints">
         {#each data.entrypoints as entrypoint}
-            <option value={entrypoint} selected={entrypoint === data.router.EntryPoint}>{entrypoint}</option>       
+            <!-- <option value={entrypoint} selected={entrypoint === data.router.EntryPoints}>{entrypoint}</option>    -->
+            <option value={entrypoint} selected={data.router.EntryPoints.includes(entrypoint)}>{entrypoint}</option>       
+
         {/each}
     </select>
     <label for="Middlewares">Middlewares</label>
     <select name="Middlewares" id="Middlewares">
         <option value="" selected>None</option>
         {#each data.middlewares as middleware}
-            <option value="{middleware}" selected={middleware === data.router.Middleware}>{middleware}</option>
+            <!-- <option value="{middleware}" selected={middleware === data.router.Middlewares}>{middleware}</option> -->
+            <option value="{middleware}" selected={data.router.Middlewares?.includes(middleware)}>{middleware}</option>
         {/each}
     </select>
     {#if data.router.Tls}
