@@ -1,4 +1,3 @@
-// import { TRAEFIK_API_ENDPOINT } from '$env/static/private';
 import { env } from '$env/dynamic/private';
 
 export async function GetRouter(routerName: string) {
