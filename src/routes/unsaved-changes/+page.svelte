@@ -27,20 +27,26 @@
 	}
 </script>
 
-
-{#if data.unsavedChanges.length > 0}
+<section class="container">
+	<h1 class="text-3xl font-semibold">Unsaved changes</h1>
+	{#if data.unsavedChanges.length > 0}
 	{#each data.unsavedChanges as unsavedObject}
 		<p>{unsavedObject}</p>
 	{/each}
 
-	<button on:click={abortChanges}>
-		Abort changes
-	</button>
-
-	<button on:click={saveChanges}>
-		Save changes
-	</button>
+	<div class="mt-3">
+		<button class="btn btn-error" on:click={abortChanges}>
+			Abort changes
+		</button>
+	
+		<button class="btn btn-primary" on:click={saveChanges}>
+			Save changes
+		</button>
+	</div>
+	
 	
 	{:else}
 		<p>No unsaved changes.</p>
 {/if}
+</section>
+
