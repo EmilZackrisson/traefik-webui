@@ -18,7 +18,7 @@
 <section class="flex flex-col my-5">
     <h2 class="text-xl font-semibold">Services</h2>
 {#each data.services as service}
-    <p>{service}</p>
+    <a href="/service/{service}">{service}</a>
 {/each}
 </section>
 

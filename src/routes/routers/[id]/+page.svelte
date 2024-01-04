@@ -1,16 +1,10 @@
 <script lang="ts">
     import type { ActionData, PageData } from './$types';
     import { enhance } from '$app/forms';
-    import { getContext, setContext } from 'svelte';
-	import type { Writable } from 'svelte/store';
 
     export let data: PageData;
 
 	export let form: ActionData;
-
-    if (form?.success) {
-        
-    }
 
 </script>
 
@@ -18,7 +12,7 @@
 
 {#if form?.success}
 	<!-- this message is ephemeral; it exists because the page was rendered in
-		   response to a form submission. it will vanish if the user reloads -->
+	response to a form submission. it will vanish if the user reloads -->
 	<!-- <p>Successfully logged in! Welcome back, {data.router.user.name}</p> -->
     <h1>Success</h1>
 {/if}
