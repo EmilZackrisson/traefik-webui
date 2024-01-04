@@ -1,41 +1,13 @@
-<script lang="ts">
-	import Sidebar from './../components/sidebar.svelte';
-	import UnsavedChangesBanner from './../components/unsavedChangesBanner.svelte';
-	import '../app.css';
-	import type { LayoutData } from './$types';
-	import { page } from '$app/stores';
-
-	console.log($page.url.pathname);
-
-	export let data: LayoutData;
-</script>
-
-<!-- <Sidebar /> -->
-
 <div class="flex flex-row sm:gap-10">
 	<div class="sm:w-full sm:max-w-[18rem]">
 		<input type="checkbox" id="sidebar-mobile-fixed" class="sidebar-state" />
 		<label for="sidebar-mobile-fixed" class="sidebar-overlay"></label>
-		<aside
-			class="sidebar sidebar-fixed-left sidebar-mobile h-full justify-start max-sm:fixed max-sm:-translate-x-full"
-		>
+		<aside class="sidebar sidebar-fixed-left sidebar-mobile h-full justify-start max-sm:fixed max-sm:-translate-x-full">
 			<section class="sidebar-title items-center p-4">
-				<svg
-					fill="none"
-					height="42"
-					viewBox="0 0 32 32"
-					width="42"
-					xmlns="http://www.w3.org/2000/svg"
-				>
+				<svg fill="none" height="42" viewBox="0 0 32 32" width="42" xmlns="http://www.w3.org/2000/svg">
 					<rect height="100%" rx="16" width="100%"></rect>
-					<path
-						clip-rule="evenodd"
-						d="M17.6482 10.1305L15.8785 7.02583L7.02979 22.5499H10.5278L17.6482 10.1305ZM19.8798 14.0457L18.11 17.1983L19.394 19.4511H16.8453L15.1056 22.5499H24.7272L19.8798 14.0457Z"
-						fill="currentColor"
-						fill-rule="evenodd"
-					></path>
+					<path clip-rule="evenodd" d="M17.6482 10.1305L15.8785 7.02583L7.02979 22.5499H10.5278L17.6482 10.1305ZM19.8798 14.0457L18.11 17.1983L19.394 19.4511H16.8453L15.1056 22.5499H24.7272L19.8798 14.0457Z" fill="currentColor" fill-rule="evenodd"></path>
 				</svg>
-
 				<div class="flex flex-col">
 					<span>Traefik WebUI</span>
 				</div>
@@ -45,91 +17,20 @@
 					<section class="menu-section px-4">
 						<span class="menu-title">Configure</span>
 						<ul class="menu-items">
-							<a href="/">
-								<li class="menu-item" class:menu-active={$page.url.pathname == '/'}>
-									<!-- <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                    </svg> -->
-									<svg
-										class="h-5 w-5 opacity-75"
-										aria-hidden="true"
-										xmlns="http://www.w3.org/2000/svg"
-										fill="none"
-										viewBox="0 0 20 20"
-									>
-										<path
-											stroke="currentColor"
-											stroke-linecap="round"
-											stroke-linejoin="round"
-											stroke-width="2"
-											d="M3 8v10a1 1 0 0 0 1 1h4v-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5h4a1 1 0 0 0 1-1V8M1 10l9-9 9 9"
-										/>
-									</svg>
-									<span>Home</span>
-								</li>
-							</a>
-							<a href="/routers">
-								<li class="menu-item" class:menu-active={$page.url.pathname.startsWith('/routers')}>
-									<!-- <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                    </svg> -->
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										class="h-5 w-5 opacity-75"
-										fill="none"
-										stroke-linejoin="round"
-										stroke-miterlimit="2"
-										clip-rule="evenodd"
-										viewBox="0 0 32 32"
-										id="route"
-										><path
-											stroke="currentColor"
-											stroke-linecap="round"
-											stroke-linejoin="round"
-											stroke-width="2"
-											d="M22.168,15l-3.78,-0c-2.423,-0 -4.388,1.965 -4.388,4.388l0,0.224c0,2.423 1.965,4.388 4.388,4.388l3.71,-0c0.505,-0 0.988,0.2 1.345,0.557c0.357,0.357 0.557,0.84 0.557,1.345l0,0.196c0,0.505 -0.2,0.988 -0.557,1.345c-0.357,0.357 -0.84,0.557 -1.345,0.557l-12.266,-0c1.298,-2.037 2.168,-5.394 2.168,-7c0,-2.76 -2.24,-5 -5,-5c-2.76,0 -5,2.24 -5,5c0,1.677 0.948,5.262 2.342,7.261c0.775,1.111 1.726,1.739 2.658,1.739l15.098,-0c1.035,0 2.027,-0.411 2.759,-1.143c0.732,-0.732 1.143,-1.724 1.143,-2.759c-0,-0.065 -0,-0.131 -0,-0.196c0,-1.035 -0.411,-2.027 -1.143,-2.759c-0.732,-0.732 -1.724,-1.143 -2.759,-1.143l-1.098,0l-2.612,0c-1.319,0 -2.388,-1.069 -2.388,-2.388c-0,-0 0,-0.224 0,-0.224c0,-1.319 1.069,-2.388 2.388,-2.388l6.612,0c0.932,0 1.883,-0.628 2.658,-1.739c1.394,-1.999 2.342,-5.584 2.342,-7.261c0,-2.76 -2.24,-5 -5,-5c-2.76,-0 -5,2.24 -5,5c0,1.606 0.87,4.963 2.168,7Zm-15.168,13c-0.206,0 -0.379,-0.154 -0.565,-0.335c-0.333,-0.326 -0.635,-0.787 -0.912,-1.312c-0.915,-1.731 -1.523,-4.134 -1.523,-5.353c0,-1.656 1.344,-3 3,-3c1.656,0 3,1.344 3,3c0,1.219 -0.608,3.622 -1.523,5.353c-0.277,0.525 -0.579,0.986 -0.912,1.312c-0.186,0.181 -0.359,0.335 -0.565,0.335Zm-0,-8.5c0.828,0 1.5,0.672 1.5,1.5c-0,0.828 -0.672,1.5 -1.5,1.5c-0.828,-0 -1.5,-0.672 -1.5,-1.5c0,-0.828 0.672,-1.5 1.5,-1.5Zm18,-14.5c1.656,-0 3,1.344 3,3c0,1.219 -0.608,3.622 -1.523,5.353c-0.277,0.525 -0.579,0.986 -0.912,1.312c-0.186,0.181 -0.359,0.335 -0.565,0.335c-0.206,-0 -0.379,-0.154 -0.565,-0.335c-0.333,-0.326 -0.635,-0.787 -0.912,-1.312c-0.915,-1.731 -1.523,-4.134 -1.523,-5.353c0,-1.656 1.344,-3 3,-3Zm0,1.5c0.828,0 1.5,0.672 1.5,1.5c0,0.828 -0.672,1.5 -1.5,1.5c-0.828,-0 -1.5,-0.672 -1.5,-1.5c0,-0.828 0.672,-1.5 1.5,-1.5Z"
-										></path></svg
-									>
-									<span>Routers</span>
-								</li>
-							</a>
-							<a href="/services">
-								<li
-									class="menu-item"
-									class:menu-active={$page.url.pathname.startsWith('/services')}
-								>
-									<!-- <svg
-										xmlns="http://www.w3.org/2000/svg"
-										class="h-5 w-5 opacity-75"
-										fill="none"
-										viewBox="0 0 24 24"
-										stroke="currentColor"
-										stroke-width="2"
-									>
-										<path
-											stroke-linecap="round"
-											stroke-linejoin="round"
-											d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-										/>
-									</svg> -->
-									<svg
-										fill="none"
-										class="h-5 w-5 opacity-75"
-										viewBox="0 0 20 20"
-										xmlns="http://www.w3.org/2000/svg"
-										><path
-                                            stroke="currentColor"
-											stroke-linecap="round"
-											stroke-linejoin="round"
-											stroke-width="1"
-											d="M17 12h-6v4h1v4H8v-4h1v-4H3v4h1v4H0v-4h1v-4a2 2 0 0 1 2-2h6V6H7V0h6v6h-2v4h6a2 2 0 0 1 2 2v4h1v4h-4v-4h1v-4z"
-										/></svg
-									>
-									<span>Services</span>
-								</li>
-							</a>
+							<li class="menu-item">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+									<path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+									<path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+								</svg>
+								<span>Routers</span>
+							</li>
+
+							<li class="menu-item menu-active">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+									<path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+								</svg>
+								<span>Services</span>
+							</li>
 							<!-- <li class="menu-item">
 								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-75" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 									<path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
@@ -242,7 +143,7 @@
 					</section>
 				</nav>
 			</section>
-			<!-- <section class="sidebar-footer justify-end bg-gray-2 pt-2">
+			<section class="sidebar-footer justify-end bg-gray-2 pt-2">
 				<div class="divider my-0"></div>
 				<div class="dropdown z-50 flex h-fit w-full cursor-pointer hover:bg-gray-4">
 					<label class="whites mx-2 flex h-fit w-full cursor-pointer p-0 hover:bg-gray-4" tabindex="0">
@@ -266,7 +167,7 @@
 						<a tabindex="-1" class="dropdown-item text-sm">Settings</a>
 					</div>
 				</div>
-			</section> -->
+			</section>
 		</aside>
 	</div>
 	<div class="flex w-full flex-col p-4">
@@ -274,7 +175,7 @@
 			<label for="sidebar-mobile-fixed" class="btn-primary btn sm:hidden">Open Sidebar</label>
 		</div>
 
-		<slot />
+        <slot name="content"/>
 		<!-- <div class="my-4 grid grid-cols-2 gap-4">
 			<div class="flex h-40 w-full items-center justify-center border-2 border-dashed border-border bg-gray-1">+</div>
 
@@ -290,5 +191,3 @@
 		</div> -->
 	</div>
 </div>
-
-<UnsavedChangesBanner unsavedObjects={data.unsavedChanges} />
