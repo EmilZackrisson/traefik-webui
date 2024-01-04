@@ -6,7 +6,7 @@
 </script>
 
 <div>
-    <h1 class="text-3xl font-semibold">Traefik WebUI</h1>
+    <h1 class="text-5xl font-semibold">Traefik WebUI</h1>
     <p>Edit the Traefik configuration from your browser.</p>
     
     <h2 class="text-2xl font-semibold mt-5">Navigation</h2>
@@ -19,7 +19,7 @@
             </div>
         </a>
     
-        <a href="/services">
+        <a href="/services" >
             <div class="card">
                 <div class="card-body">
                     Services
